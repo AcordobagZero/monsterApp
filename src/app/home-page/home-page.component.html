@@ -1,0 +1,36 @@
+<form class="col-4 m-auto">
+  <div class="m-3 col-6">
+    <label for="nombre" class="form-label">Nombre</label>
+    <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="nombreMonstruo">
+  </div>
+  <div class="m-3 col-6">
+    <label for="vida" class="form-label">Vida</label>
+    <input type="number" class="form-control" id="vida" name="vida" [(ngModel)]="vidaMonstruo">
+  </div>
+  <div class="m-3 col-6">
+    <label for="ataque" class="form-label">Ataque</label>
+    <input type="number" class="form-control" id="ataque" name="ataque" [(ngModel)]="ataqueMonstruo">
+  </div>
+  <div class="m-3 col-6">
+    Raza: <select name="raza" id="raza" [(ngModel)]="razaMonstruo">
+      <option value="Orco">Orco</option>
+      <option value="Elfo">Elfo</option>
+      <option value="Trasgo">Trasgo</option>
+      <option value="Enano">Enano</option>
+    </select>
+  </div>
+
+  <button type="submit" class="btn btn-primary" (click)="addMonster()">Crear</button>
+</form>
+
+
+<div *ngIf="misMonstruos.length == 0; else hayMonstruos" class="alert alert-danger mt-2" role="alert">
+  No Hay Monstruos
+</div>
+<ng-template #hayMonstruos>
+  <div class="alert alert-primary mt-2" role="alert" #hayMonstruos>
+    Hay Monstruos
+  </div>
+</ng-template>
+
+<app-monster-c *ngFor="let Monstruo of misMonstruos" [MonstruoEnviado]="Monstruo"></app-monster-c>
